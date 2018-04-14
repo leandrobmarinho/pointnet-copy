@@ -262,5 +262,6 @@ def eval_one_epoch(sess, ops, test_writer):
 
 
 if __name__ == "__main__":
-    train()
-    LOG_FOUT.close()
+    print('apenas o main')
+    # train()
+    # LOG_FOUT.close()
