@@ -91,6 +91,7 @@ def get_bn_decay(batch):
     return bn_decay
 
 def train():
+    print('Entrei')
     with tf.Graph().as_default():
         with tf.device('/gpu:'+str(GPU_INDEX)):
             pointclouds_pl, labels_pl = MODEL.placeholder_inputs(BATCH_SIZE, NUM_POINT)
