@@ -158,6 +158,7 @@ def train():
                'merged': merged,
                'step': batch}
 
+        print('AQUI for epoch in range(MAX_EPOCH): ')
         for epoch in range(MAX_EPOCH):
             log_string('**** EPOCH %03d ****' % (epoch))
             sys.stdout.flush()
