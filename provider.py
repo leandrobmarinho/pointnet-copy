@@ -94,11 +94,12 @@ def load_h5(h5_filename):
     return (data, label)
 
 def loadDataFile(filename):
-    print('loadDataFile %s ' % filename)
     return load_h5(filename)
 
 def load_h5_data_label_seg(h5_filename):
     f = h5py.File(h5_filename)
+    print('def load_h5_data_label_seg(h5_filename):')
+    print(f)
     data = f['data'][:]
     label = f['label'][:]
     seg = f['pid'][:]

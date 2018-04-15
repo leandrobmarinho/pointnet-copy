@@ -95,12 +95,10 @@ def get_bn_decay(batch):
     return bn_decay
 
 def train():
-    print('Entrei')
     with tf.Graph().as_default():
         with tf.device('/gpu:'+str(GPU_INDEX)):
             pointclouds_pl, labels_pl = MODEL.placeholder_inputs(BATCH_SIZE, NUM_POINT)
             is_training_pl = tf.placeholder(tf.bool, shape=())
-            print(is_training_pl)
             
             # Note the global_step=batch parameter to minimize. 
             # That tells the optimizer to helpfully increment the 'batch' parameter for you every time it trains.
@@ -159,7 +157,6 @@ def train():
                'merged': merged,
                'step': batch}
 
-        print('AQUI for epoch in range(MAX_EPOCH): ')
         for epoch in range(MAX_EPOCH):
             log_string('**** EPOCH %03d ****' % (epoch))
             sys.stdout.flush()
@@ -184,7 +181,7 @@ def train_one_epoch(sess, ops, train_writer):
     
     for fn in range(len(TRAIN_FILES)):
         log_string('----' + str(fn) + '-----')
-        print('%s/%s' % (BASE_DIR, TRAIN_FILES[train_file_idxs[fn]]))
+        print('train_one_epoch >> %s/%s' % (BASE_DIR, TRAIN_FILES[train_file_idxs[fn]]))
 
         # current_data, current_label = provider.loadDataFile(TRAIN_FILES[train_file_idxs[fn]])
         current_data, current_label = provider.loadDataFile('%s/%s' % (BASE_DIR, TRAIN_FILES[train_file_idxs[fn]]))
@@ -233,7 +230,11 @@ def eval_one_epoch(sess, ops, test_writer):
     
     for fn in range(len(TEST_FILES)):
         log_string('----' + str(fn) + '-----')
-        current_data, current_label = provider.loadDataFile(TEST_FILES[fn])
+
+        print('%s/%s' % (BASE_DIR, TEST_FILES[fn]))
+
+        current_data, current_label = provider.loadDataFile('%s/%s' % (BASE_DIR, TEST_FILES[fn]))
+        # current_data, current_label = provider.loadDataFile(TEST_FILES[fn])
         current_data = current_data[:,0:NUM_POINT,:]
         current_label = np.squeeze(current_label)
         
