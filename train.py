@@ -270,3 +270,4 @@ def eval_one_epoch(sess, ops, test_writer):
 if __name__ == "__main__":
     train()
     LOG_FOUT.close()
+    print('acabou')
