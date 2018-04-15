@@ -1,0 +1,8 @@
+virtualenv venv
+virtualenv venv --system-site-packages
+source venv/bin/activate
+easy_install -U pip
+pip install --upgrade tensorflow
+pip install --upgrade https://storage.googleapis.com/tensorflow/mac/cpu/tensorflow-1.7.0-py2-none-any.whl
+pip install h5py
+deactivate
