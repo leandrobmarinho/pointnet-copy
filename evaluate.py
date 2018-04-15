@@ -98,7 +98,10 @@ def eval_one_epoch(sess, ops, num_votes=1, topk=1):
     fout = open(os.path.join(DUMP_DIR, 'pred_label.txt'), 'w')
     for fn in range(len(TEST_FILES)):
         log_string('----'+str(fn)+'----')
-        current_data, current_label = provider.loadDataFile(TEST_FILES[fn])
+        # current_data, current_label = provider.loadDataFile(TEST_FILES[fn])
+        current_data, current_label = provider.loadDataFile('%s/%s' % (BASE_DIR, TEST_FILES[fn]))
+
+        
         current_data = current_data[:,0:NUM_POINT,:]
         current_label = np.squeeze(current_label)
         print(current_data.shape)
