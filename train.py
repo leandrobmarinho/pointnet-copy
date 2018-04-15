@@ -61,8 +61,6 @@ BN_DECAY_CLIP = 0.99
 
 HOSTNAME = socket.gethostname()
 
-print('antes')
-
 # ModelNet40 official train/test split
 TRAIN_FILES = provider.getDataFiles( \
     os.path.join(BASE_DIR, 'data/modelnet40_ply_hdf5_2048/train_files.txt'))
@@ -186,7 +184,10 @@ def train_one_epoch(sess, ops, train_writer):
     
     for fn in range(len(TRAIN_FILES)):
         log_string('----' + str(fn) + '-----')
-        current_data, current_label = provider.loadDataFile(TRAIN_FILES[train_file_idxs[fn]])
+        print('%s/%s' % (BASE_DIR, TRAIN_FILES[train_file_idxs[fn]]))
+
+        # current_data, current_label = provider.loadDataFile(TRAIN_FILES[train_file_idxs[fn]])
+        current_data, current_label = provider.loadDataFile('%s/%s' % (BASE_DIR, TRAIN_FILES[train_file_idxs[fn]]))
         current_data = current_data[:,0:NUM_POINT,:]
         current_data, current_label, _ = provider.shuffle_data(current_data, np.squeeze(current_label))            
         current_label = np.squeeze(current_label)
@@ -265,6 +266,5 @@ def eval_one_epoch(sess, ops, test_writer):
 
 
 if __name__ == "__main__":
-    print('apenas o main')
-    # train()
+    train()
     # LOG_FOUT.close()

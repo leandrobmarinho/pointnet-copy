@@ -94,6 +94,7 @@ def load_h5(h5_filename):
     return (data, label)
 
 def loadDataFile(filename):
+    print('loadDataFile %s ' % filename)
     return load_h5(filename)
 
 def load_h5_data_label_seg(h5_filename):
