@@ -97,6 +97,7 @@ def get_bn_decay(batch):
 def train():
     with tf.Graph().as_default():
         with tf.device('/gpu:'+str(GPU_INDEX)):
+
             pointclouds_pl, labels_pl = MODEL.placeholder_inputs(BATCH_SIZE, NUM_POINT)
             is_training_pl = tf.placeholder(tf.bool, shape=())
             
@@ -231,7 +232,7 @@ def eval_one_epoch(sess, ops, test_writer):
     for fn in range(len(TEST_FILES)):
         log_string('----' + str(fn) + '-----')
 
-        print('%s/%s' % (BASE_DIR, TEST_FILES[fn]))
+        print('eval_one_epoch >> %s/%s' % (BASE_DIR, TEST_FILES[fn]))
 
         current_data, current_label = provider.loadDataFile('%s/%s' % (BASE_DIR, TEST_FILES[fn]))
         # current_data, current_label = provider.loadDataFile(TEST_FILES[fn])
@@ -268,4 +269,4 @@ def eval_one_epoch(sess, ops, test_writer):
 
 if __name__ == "__main__":
     train()
-    # LOG_FOUT.close()
+    LOG_FOUT.close()
