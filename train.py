@@ -45,13 +45,11 @@ MODEL_FILE = os.path.join(BASE_DIR, 'models', FLAGS.model+'.py')
 LOG_DIR = FLAGS.log_dir
 if not os.path.exists(LOG_DIR): os.mkdir(LOG_DIR)
 
-print('AQUUI {} {}'.format(MODEL_FILE, LOG_DIR))
-
 os.system('cp %s %s/%s' % (MODEL_FILE, BASE_DIR, LOG_DIR)) # bkp of model def
 os.system('cp %s/train.py %s/%s' % (BASE_DIR, BASE_DIR, LOG_DIR)) # bkp of train procedure
 # os.system('cp pointnet-copy/train.py %s' % (LOG_DIR)) # bkp of train procedure
 
-LOG_FOUT = open(os.path.join('{}/{}'.format(BASE_DIR, LOG_DIR), 'log_train.txt'), 'w')
+LOG_FOUT = open(os.path.join('%s/%s' % (BASE_DIR, LOG_DIR), 'log_train.txt'), 'w')
 LOG_FOUT.write(str(FLAGS)+'\n')
 
 MAX_NUM_POINT = 2048
